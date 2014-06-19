@@ -2,6 +2,8 @@
 TrelloStats
 ===============================
 
+******* This is not really complete yet - I'll be finishing in the next two weeks ********
+
 .. image:: https://badge.fury.io/py/trellostats.png
     :target: http://badge.fury.io/py/trellostats
     
@@ -20,4 +22,5 @@ Trello Stats for Winners
 Features
 --------
 
-* TODO
+* Reports
+* Burndown
