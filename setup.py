@@ -23,7 +23,7 @@ test_requirements = [
 
 setup(
     name='trellostats',
-    version='0.6',
+    version='0.7',
     description='Trello Stats for Winners',
     long_description=readme + '\n\n' + history,
     author='Ben Hughes',
