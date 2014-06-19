@@ -6,11 +6,11 @@ virtualenv:
   system_site_packages: true
 
 python:
-  - "3.4"
-  - "3.3"
+  # - "3.4"
+  # - "3.3"
   - "2.7"
   - "2.6"
-  - "pypy"
+  # - "pypy"
 
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install: pip install -r requirements.txt

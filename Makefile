@@ -28,7 +28,7 @@ lint:
 	flake8 trellostats tests
 
 test:
-	python setup.py test
+	py.test
 
 test-all:
 	tox
