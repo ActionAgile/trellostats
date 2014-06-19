@@ -14,9 +14,8 @@ except ImportError:
 readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
-requirements = [
-    # TODO: put package requirements here
-]
+requirements = [line.strip() for line in open('requirements.txt')
+                      .readlines()]
 
 test_requirements = [
     # TODO: put package test requirements here
@@ -24,12 +23,12 @@ test_requirements = [
 
 setup(
     name='trellostats',
-    version='0.4',
+    version='0.6',
     description='Trello Stats for Winners',
     long_description=readme + '\n\n' + history,
     author='Ben Hughes',
     author_email='ben.hughes@actionagile.co.uk',
-    url='https://github.com/bwghughes/trellostats',
+    url='https://github.com/actionagile/trellostats',
     packages=[
         'trellostats',
     ],
@@ -39,19 +38,23 @@ setup(
     install_requires=requirements,
     license="BSD",
     zip_safe=False,
-    keywords='trellostats',
+    keywords='Trello, Stats, Cycle Time, Reports, Burndown, Work In Progress',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
-        "Programming Language :: Python :: 2",
-        'Programming Language :: Python :: 2.6',
+        # "Programming Language :: Python :: 2",
+        # 'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
+        # 'Programming Language :: Python :: 3',
+        # 'Programming Language :: Python :: 3.3',
+        # 'Programming Language :: Python :: 3.4',
     ],
     test_suite='tests',
-    tests_require=test_requirements
+    tests_require=test_requirements,
+    entry_points={
+        'console_scripts':
+        ['trellostats=trellostats.cli:cli']
+    }
 )

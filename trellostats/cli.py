@@ -1,8 +1,8 @@
 import os
 import click
 
-from models import Snapshot
-from trellostats import TrelloStats
+from .models import Snapshot
+from .trellostats import TrelloStats
 
 
 @click.group()
@@ -64,5 +64,3 @@ def snapshot(ctx, board, cycle_time, done):
 cli.add_command(snapshot)
 cli.add_command(resetdb)
 
-if __name__ == '__main__':
-    cli()

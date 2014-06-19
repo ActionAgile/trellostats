@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import requests
 import grequests
+from requests.exceptions import ConnectionError
 
 import numpy as np
 from dateutil.parser import parse
@@ -25,6 +26,8 @@ class TrelloStats(object):
             return requests.get(url).json()
         except ValueError:
             print "Invalid options - check your board id."
+        except ConnectionError:
+            print "Cannot connect to Trello API."
 
     def get_lists(self):
         url = BOARD_URL.format(self.board_id, self.app_key,
@@ -33,8 +36,9 @@ class TrelloStats(object):
 
     def get_list_id_from_name(self, name):
         try:
-            return [li.get('id') for li in self.get_lists()
-                    if li.get('name') == name][0]
+            lists = self.get_lists()
+            if lists:
+                return [li.get('id') for li in lists if li.get('name') == name][0]
         except IndexError:
             pass
 
