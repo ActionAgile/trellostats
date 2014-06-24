@@ -18,7 +18,8 @@ requirements = [line.strip() for line in open('requirements.txt')
                       .readlines()]
 
 test_requirements = [
-    # TODO: put package test requirements here
+    'pytest',
+    'mock'
 ]
 
 setup(
@@ -38,7 +39,7 @@ setup(
     install_requires=requirements,
     license="BSD",
     zip_safe=False,
-    keywords='Trello, Stats, Cycle Time, Reports, Burndown, Work In Progress',
+    keywords='Trello, Stats, Cycle Time, Reports, Burndown, Work In Progress, Kanban',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',

@@ -22,5 +22,7 @@ Trello Stats for Winners
 Features
 --------
 
-* Reports
-* Burndown
+* Reporting in general (templates)
+* Email reporting
+* Burndown (points using the [] standard)
+* Revenue burn and projected completion costs

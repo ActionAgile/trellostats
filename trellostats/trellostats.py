@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 import requests
 import grequests
+import webbrowser
 from requests.exceptions import ConnectionError
 
 import numpy as np
 from dateutil.parser import parse
 
-from settings import ACTION_URL, BOARD_URL, LIST_URL
+from settings import ACTION_URL, BOARD_URL, LIST_URL, TOKEN_URL
 
 
 class TrelloStats(object):
@@ -28,6 +29,10 @@ class TrelloStats(object):
             print "Invalid options - check your board id."
         except ConnectionError:
             print "Cannot connect to Trello API."
+
+    def get_token(self):
+        webbrowser.open(TOKEN_URL.format(self.app_key))
+        exit()
 
     def get_lists(self):
         url = BOARD_URL.format(self.board_id, self.app_key,

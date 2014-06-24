@@ -2,7 +2,7 @@
 
 __author__ = 'Ben Hughes'
 __email__ = 'ben.hughes@actionagile.co.uk'
-__version__ = '0.4'
+__version__ = '0.6'
 
 from .trellostats import TrelloStats
 from .trellostats import requests, grequests
