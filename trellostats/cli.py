@@ -1,9 +1,17 @@
 import os
+import sys
 import click
 
 from .models import Snapshot
 from .trellostats import TrelloStats
-from .reports import render_text, get_env
+
+# Bad, but we're dynamically calling render_ funcs
+from .reports import *
+
+def cycle_time(ts, board, done):
+    done_id = ts.get_list_id_from_name(done)
+    cards = ts.get_list_data(done_id)
+    return ts.cycle_time(cards)
 
 
 @click.group()
@@ -55,9 +63,7 @@ def snapshot(ctx, board, done):
                           --done=Done
 
     """
-    done_id = ts.get_list_id_from_name(done)
-    cards = ts.get_list_data(done_id)
-    ct = ts.cycle_time(cards)
+    ct = cycle_time(ts, board, done)
     env = get_env()
     print render_text(env, **dict(cycle_time=ct))
 
@@ -65,7 +71,37 @@ def snapshot(ctx, board, done):
     Snapshot.create(board_id=board, done_id=done_id, cycle_time=ct)
 
 
+@click.command()
+@click.pass_context
+@click.argument('board')
+@click.option('--done', help='Title of column which represents Done\
+                              to calc. Cycle Time', default="Done")
+@click.option('--output', type=click.Choice(['text', 'html']), default='text', multiple=True)
+def report(ctx, board, done, output):
+    ctx.obj['board_id'] = board
+    ts = TrelloStats(ctx.obj)
+    """
+        Reporting mode - Daily snapshots of a board for ongoing reporting:
+         -> trellis report --board=87hiudhw
+                          --spend
+                          --revenue
+                          --done=Done
+
+    """
+    ct = cycle_time(ts, board, done)
+    env = get_env()
+
+    #  Get all render functions from the module and filter out the ones we don't want.
+    render_functions = [target for target in
+                     dir(sys.modules['trellostats.reports'])
+                     if target.startswith("render_") and
+                     target.endswith(output)]
+    
+    for render_func in render_functions:
+        print globals()[render_func](env, **dict(cycle_time=ct))
+
+
 cli.add_command(snapshot)
 cli.add_command(resetdb)
 cli.add_command(token)
-
+cli.add_command(report)
