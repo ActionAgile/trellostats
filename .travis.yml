@@ -16,7 +16,7 @@ python:
 install: pip install -r requirements.txt --use-mirrors
 
 # command to run tests, e.g. python setup.py test
-script: make test
+script: make coverage
 
 notifications:
   slack: actionagile:5Ezu3RW7D4GE8AyYUZBYnUKv

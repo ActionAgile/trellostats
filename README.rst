@@ -10,8 +10,12 @@ TrelloStats
 .. image:: https://travis-ci.org/ActionAgile/trellostats.svg?branch=master
         :target: https://travis-ci.org/actionagile/trellostats
 
+.. image:: https://coveralls.io/repos/ActionAgile/trellostats/badge.png
+	    :target: https://coveralls.io/r/ActionAgile/trellostats
+
 .. image:: https://pypip.in/d/trellostats/badge.png
         :target: https://pypi.python.org/pypi/trellostats
+
 
 
 Trello Stats for Winners
