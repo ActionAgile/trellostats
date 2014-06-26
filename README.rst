@@ -8,13 +8,13 @@ TrelloStats
     :target: http://badge.fury.io/py/trellostats
     
 .. image:: https://travis-ci.org/ActionAgile/trellostats.svg?branch=master
-        :target: https://travis-ci.org/actionagile/trellostats
+    :target: https://travis-ci.org/actionagile/trellostats
 
-.. image:: https://coveralls.io/repos/ActionAgile/trellostats/badge.png
-	    :target: https://coveralls.io/r/ActionAgile/trellostats
+.. image:: https://coveralls.io/repos/ActionAgile/trellostats/badge.png?branch=feature%2Fcycletime-history
+    :target: https://coveralls.io/r/ActionAgile/trellostats?branch=feature%2Fcycletime-history
 
 .. image:: https://pypip.in/d/trellostats/badge.png
-        :target: https://pypi.python.org/pypi/trellostats
+    :target: https://pypi.python.org/pypi/trellostats
 
 
 
