@@ -2,11 +2,14 @@ import pygal
 from .models import Snapshot
 
 
-def render_cycle_time_history(board):
+def get_snapshots_for_boards(board):
+	return [s for s in Snapshot.select(Snapshot.board_id == board)]
+
+
+def render_cycle_time_history_chart(board):
 	line_chart = pygal.Line()
 	line_chart.title = 'Cycle Time'
-	history = [s for s in Snapshot.select(Snapshot.board_id == board)]
-	print history
+	history = get_snapshots_for_boards(board)
 	# line_chart.x_labels = map(str, range(2002, 2013))
 	# line_chart.add('Firefox', [None, None, 0, 16.6,   25,   31, 36.4, 45.5, 46.3, 42.8, 37.1])
 	# line_chart.add('Chrome',  [None, None, None, None, None, None,    0,  3.9, 10.8, 23.8, 35.3])
