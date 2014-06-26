@@ -20,3 +20,6 @@ script: make test
 
 notifications:
   slack: actionagile:5Ezu3RW7D4GE8AyYUZBYnUKv
+
+after_success:
+	coveralls
