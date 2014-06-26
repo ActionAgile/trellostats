@@ -13,4 +13,6 @@ db_proxy.initialize(SqliteDatabase(':memory:'))
 Snapshot.create_table()
 
 for x in range(100):
-	Snapshot.create(**dict(board_id=shortuuid.uuid(), cycle_time=x*10, done_id=shortuuid.uuid()))
+	Snapshot.create(**dict(board_id=shortuuid.uuid(), 
+						   cycle_time=x*10, 
+						   done_id=shortuuid.uuid()))
