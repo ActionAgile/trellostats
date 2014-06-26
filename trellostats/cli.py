@@ -3,6 +3,7 @@ import click
 
 from .models import Snapshot
 from .trellostats import TrelloStats
+from .reports import render_text, get_env
 
 
 @click.group()
@@ -57,7 +58,8 @@ def snapshot(ctx, board, done):
     done_id = ts.get_list_id_from_name(done)
     cards = ts.get_list_data(done_id)
     ct = ts.cycle_time(cards)
-    print ct
+    env = get_env()
+    print render_text(env, **dict(cycle_time=ct))
 
     # Create snapshot
     Snapshot.create(board_id=board, done_id=done_id, cycle_time=ct)

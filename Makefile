@@ -34,10 +34,7 @@ test-all:
 	tox
 
 coverage:
-	coverage run --source trellostats setup.py test
-	coverage report -m
-	coverage html
-	open htmlcov/index.html
+	py.test --cov trellostats tests/
 
 docs:
 	rm -f docs/trellostats.rst
@@ -55,3 +52,9 @@ dist: clean
 	python setup.py sdist
 	python setup.py bdist_wheel
 	ls -l dist
+
+ci:
+	watchmedo shell-command --patterns='*.py' --recursive --command='make test'
+
+covci:
+	watchmedo shell-command --patterns='*.py' --recursive --command='make coverage'
