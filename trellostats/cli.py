@@ -2,21 +2,12 @@ import os
 import sys
 import click
 
-from peewee import SqliteDatabase
 from .models import Snapshot, db_proxy
 from .trellostats import TrelloStats
-from .charts import render_cycle_time_history
+from .helpers import cycle_time, cycle_time_history_chart, init_db
 
 # Bad, but we're dynamically calling render_ funcs
 from .reports import *
-
-def cycle_time(ts, board, done):
-    done_id = ts.get_list_id_from_name(done)
-    cards = ts.get_list_data(done_id)
-    return ts.cycle_time(cards)
-
-def cycle_time_history_chart(ts, board):
-    return render_cycle_time_history(board)
 
 
 @click.group()
@@ -33,7 +24,7 @@ def cli(ctx):
     ctx.obj = dict()
     ctx.obj['app_key'] = os.environ.get('TRELLOSTATS_APP_KEY')
     ctx.obj['app_token'] = os.environ.get('TRELLOSTATS_APP_TOKEN')
-    db_proxy.initialize(SqliteDatabase('snapshots.db'))
+    init_db(db_proxy)
 
 
 @click.command()
