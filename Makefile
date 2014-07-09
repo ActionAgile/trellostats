@@ -34,7 +34,7 @@ test-all:
 	tox
 
 coverage:
-	py.test --cov trellostats tests/
+	py.test --cov-report term-missing --cov trellostats tests/
 
 docs:
 	rm -f docs/trellostats.rst

@@ -4,7 +4,8 @@ import click
 
 from .models import Snapshot, db_proxy
 from .trellostats import TrelloStats
-from .helpers import cycle_time, cycle_time_history_chart, init_db
+from .helpers import cycle_time, init_db
+from .charts import render_cycle_time_history_chart 
 
 # Bad, but we're dynamically calling render_ funcs
 from .reports import *
@@ -66,7 +67,7 @@ def snapshot(ctx, board, done):
     print render_text(env, **dict(cycle_time=ct))
 
     # Create snapshot
-    Snapshot.create(board_id=board, done_id=done_id, cycle_time=ct)
+    print Snapshot.create(board_id=board, done_id=done_id, cycle_time=ct)
 
 
 @click.command()
@@ -100,7 +101,18 @@ def report(ctx, board, done, output):
         print globals()[render_func](env, **dict(cycle_time=ct))
 
 
+@click.command()
+@click.pass_context
+@click.argument('board')
+def test(ctx, board):
+    ctx.obj['board_id'] = board
+    ts = TrelloStats(ctx.obj)
+    cth_chart = render_cycle_time_history_chart(ts, board)
+
+
+
 cli.add_command(snapshot)
 cli.add_command(resetdb)
 cli.add_command(token)
 cli.add_command(report)
+cli.add_command(test)

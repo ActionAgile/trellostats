@@ -1,19 +1,20 @@
 import pygal
 from .models import Snapshot
-
+from pygooglechart import SimpleLineChart
 
 def get_snapshots_for_boards(board):
-	return [s for s in Snapshot.select(Snapshot.board_id == board)]
+	return [(s.when, s.cycle_time) for s in Snapshot.select().where(Snapshot.board_id == board)]
 
 
 def render_cycle_time_history_chart(board):
 	line_chart = pygal.Line()
 	line_chart.title = 'Cycle Time'
 	history = get_snapshots_for_boards(board)
-	# line_chart.x_labels = map(str, range(2002, 2013))
-	# line_chart.add('Firefox', [None, None, 0, 16.6,   25,   31, 36.4, 45.5, 46.3, 42.8, 37.1])
-	# line_chart.add('Chrome',  [None, None, None, None, None, None,    0,  3.9, 10.8, 23.8, 35.3])
-	# line_chart.add('IE',      [85.8, 84.6, 84.7, 74.5,   66, 58.6, 54.7, 44.8, 36.2, 26.6, 20.1])
-	# line_chart.add('Others',  [14.2, 15.4, 15.3,  8.9,    9, 10.4,  8.9,  5.8,  6.7,  6.8,  7.5])
-	# line_chart.render()
-
+	chart = SimpleLineChart(800, 300, y_range=(0, 100))
+	# , y_range=(min(history), max(history))) 
+	print [ct[1] for ct in history]
+	import random
+	chart.add_data([random.randrange(0, 20) for x in range(100)])
+	print dir(chart)
+	print chart.get_url()
+	chart.download('mych.png')

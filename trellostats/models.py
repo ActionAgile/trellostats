@@ -15,4 +15,3 @@ class Snapshot(Model):
 
     def __repr__(self):
     	return "<Snapshot:{}:{}>".format(self.board_id, self.cycle_time)
-
