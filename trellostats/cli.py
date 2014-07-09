@@ -50,9 +50,6 @@ def token(ctx):
 @click.option('--done', help='Title of column which represents Done\
                               to calc. Cycle Time', default="Done")
 def snapshot(ctx, board, done):
-    ctx.obj['board_id'] = board
-    ts = TrelloStats(ctx.obj)
-    Snapshot.create_table(fail_silently=True)
     """
         Recording mode - Daily snapshots of a board for ongoing reporting:
          -> trellis report --board=87hiudhw
@@ -61,6 +58,9 @@ def snapshot(ctx, board, done):
                           --done=Done
 
     """
+    ctx.obj['board_id'] = board
+    ts = TrelloStats(ctx.obj)
+    Snapshot.create_table(fail_silently=True)
     done_id = ts.get_list_id_from_name(done)
     ct = cycle_time(ts, board, done)
     env = get_env()
