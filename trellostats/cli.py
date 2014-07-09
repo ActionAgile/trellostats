@@ -5,7 +5,7 @@ import click
 from .models import Snapshot, db_proxy
 from .trellostats import TrelloStats
 from .helpers import cycle_time, init_db
-from .charts import render_cycle_time_history_chart 
+
 
 # Bad, but we're dynamically calling render_ funcs
 from .reports import *
@@ -88,7 +88,6 @@ def report(ctx, board, done, output):
 
     """
     ct = cycle_time(ts, board, done)
-    cth_chart = render_cycle_time_history(board)
     env = get_env()
 
     #  Get all render functions from the module and filter out the ones we don't want.
@@ -107,8 +106,6 @@ def report(ctx, board, done, output):
 def test(ctx, board):
     ctx.obj['board_id'] = board
     ts = TrelloStats(ctx.obj)
-    cth_chart = render_cycle_time_history_chart(ts, board)
-
 
 
 cli.add_command(snapshot)
