@@ -1,5 +1,4 @@
 from peewee import SqliteDatabase
-from .charts import render_cycle_time_history_chart 
 
 def cycle_time(ts, board, done):
     done_id = ts.get_list_id_from_name(done)
