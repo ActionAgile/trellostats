@@ -46,9 +46,11 @@ def token(ctx):
     print ts.get_token()
 
 @click.command()
-def runapiserver():
-    pass
-
+@click.argument('host')
+@click.argument('port')
+def runapiserver(host, port):
+    from .web import app
+    app.run(host=host, port=int(port))
 
 
 @click.command()
@@ -110,3 +112,4 @@ cli.add_command(snapshot)
 cli.add_command(resetdb)
 cli.add_command(token)
 cli.add_command(report)
+cli.add_command(runapiserver)

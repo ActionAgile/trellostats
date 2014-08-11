@@ -15,12 +15,12 @@ readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 requirements = [line.strip() for line in open('requirements.txt')
-                      .readlines()]
+                              .readlines()]
 
-test_requirements = [
+test_requirements = requirements.extend([
     'pytest',
     'mock'
-]
+])
 
 setup(
     name='trellostats',

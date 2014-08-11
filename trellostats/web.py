@@ -5,9 +5,10 @@ logger = logging.getLogger(__name__)
 import gevent.monkey as monkey
 monkey.patch_all()
 
-from trellostats import TrelloStats
+from .trellostats import TrelloStats
+from .exceptions import TrelloStatsException
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, abort
 app = Flask(__name__)
 
 
@@ -24,7 +25,7 @@ def cycle_time():
         done_id = ts.get_list_id_from_name(ctx.get('done'))
         cards = ts.get_list_data(done_id)
         return jsonify(cycletime=ts.cycle_time(cards))
-    except Exception:
+    except TrelloStatsException:
         abort(500)
 
 
