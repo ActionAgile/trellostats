@@ -45,12 +45,13 @@ def token(ctx):
     ts = TrelloStats(ctx.obj)
     print ts.get_token()
 
+
 @click.command()
 @click.argument('host')
 @click.argument('port')
 def runapiserver(host, port):
     from .web import app
-    app.run(host=host, port=int(port))
+    app.run(host=host, port=int(port), debug=True)
 
 
 @click.command()

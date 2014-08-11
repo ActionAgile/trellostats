@@ -36,7 +36,6 @@ class TrelloStats(object):
 
     def get_token(self):
         webbrowser.open(TOKEN_URL.format(self.app_key))
-        exit()
 
     def get_lists(self):
         url = BOARD_URL.format(self.board_id, self.app_key,
