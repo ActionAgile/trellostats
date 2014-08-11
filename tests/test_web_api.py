@@ -19,7 +19,8 @@ class TestCycleTimeApi(TestCase):
         assert self.client.post('/api/v1/cycletime').status_code == 405
 
     def test_successful_call(self):
-        happy = '/api/v1/cycletime?app_key={}&app_token={}&board_id={}&done=Done'
+        happy = '/api/v1/cycletime?app_key={}&app_token={}&board_id={}&done=Done'\
+                .format(app_key, app_token, 'hLeITVoI')
         response = self.client.get(happy)
         assert response.status_code == 200
         assert 'cycletime' in response.json.keys()

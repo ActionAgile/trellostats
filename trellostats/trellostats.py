@@ -9,6 +9,8 @@ from dateutil.parser import parse
 
 from settings import ACTION_URL, BOARD_URL, LIST_URL, TOKEN_URL
 
+from .exceptions import TrelloStatsException
+
 
 class TrelloStats(object):
     """
@@ -27,13 +29,13 @@ class TrelloStats(object):
         try:
             return requests.get(url).json()
         except ValueError:
-            print "Invalid options - check your board id."
+            raise TrelloStatsException("Invalid options - check your board id.")
         except ConnectionError:
-            print "Cannot connect to Trello API."
+            raise TrelloStatsException("Cannot connect to Trello API.")
+
 
     def get_token(self):
         webbrowser.open(TOKEN_URL.format(self.app_key))
-        exit()
 
     def get_lists(self):
         url = BOARD_URL.format(self.board_id, self.app_key,
@@ -71,7 +73,7 @@ class TrelloStats(object):
                                   for card_history in card_histories])
             return cycle_time
         except AttributeError:
-            print "Can't get history of None. Have you put in the correct title of the Done column?"
+            raise TrelloStatsException("Can't get history of None. Have you put in the correct title of the Done column?")
 
 
     def __repr__(self):
