@@ -49,9 +49,10 @@ def token(ctx):
 @click.command()
 @click.argument('host')
 @click.argument('port')
-def runapiserver(host, port):
+@click.option('--debug', is_flag=True)
+def runapiserver(debug, host, port):
     from .web import app
-    app.run(host=host, port=int(port), debug=True)
+    app.run(host=host, port=int(port), debug=debug)
 
 
 @click.command()
