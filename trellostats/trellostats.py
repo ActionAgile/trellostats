@@ -22,6 +22,7 @@ class TrelloStats(object):
         self.app_token = trellis_context.get('app_token')
         self.board_id = trellis_context.get('board_id')
 
+
     def _do_get(self, url):
         try:
             return requests.get(url).json()
@@ -71,7 +72,7 @@ class TrelloStats(object):
             return cycle_time
         except AttributeError:
             print "Can't get history of None. Have you put in the correct title of the Done column?"
-            exit()
+
 
     def __repr__(self):
         return "<TrelloStats: {}>".format(self.app_token)

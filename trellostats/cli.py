@@ -45,6 +45,11 @@ def token(ctx):
     ts = TrelloStats(ctx.obj)
     print ts.get_token()
 
+@click.command()
+def runapiserver():
+    pass
+
+
 
 @click.command()
 @click.pass_context
@@ -96,7 +101,7 @@ def report(ctx, board, done, output):
                      dir(sys.modules['trellostats.reports'])
                      if target.startswith("render_") and
                      target.endswith(output)]
-    
+
     for render_func in render_functions:
         print globals()[render_func](env, **dict(cycle_time=ct))
 

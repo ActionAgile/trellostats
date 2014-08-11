@@ -45,4 +45,5 @@ docs/_build
 # Virtualenv
 venv
 peewee.db
+snapshots.db
 .env
