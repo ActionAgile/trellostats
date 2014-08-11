@@ -7,3 +7,8 @@ History
 ---------------------
 
 * First release on PyPI.
+
+0.8 (2014-08-11)
+
+* Increased test coverage
+* Added web api command

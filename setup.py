@@ -24,7 +24,7 @@ test_requirements = requirements.extend([
 
 setup(
     name='trellostats',
-    version='0.7',
+    version='0.8',
     description='Trello Stats for Winners',
     long_description=readme + '\n\n' + history,
     author='Ben Hughes',
