@@ -14,3 +14,7 @@ urllib3==1.8.2
 wheel==0.23.0
 wsgiref==0.1.2
 click==1.1
+Jinja2==2.7.3
+pytest-cov==1.7.0
+shortuuid==0.4.2
+numpy
