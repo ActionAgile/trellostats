@@ -18,7 +18,14 @@ def cycle_time():
                app_token = request.args.get('app_token'),
                board_id = request.args.get('board_id'),
                done = request.args.get('done'))
-    assert any(ctx.values())
+    try:
+        assert any(ctx.values())
+    except AssertionError:
+        message = "Incorrect request values passed. \
+                      See docs for more information."
+        logger.error(message)
+        abort(400, message)
+
     logger.info('Recieved request - {}'.format(ctx))
     ts = TrelloStats(ctx)
     try:
