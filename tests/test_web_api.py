@@ -24,3 +24,8 @@ class TestCycleTimeApi(TestCase):
         response = self.client.get(happy)
         assert response.status_code == 200
         assert 'cycletime' in response.json.keys()
+
+    def test_400_on_incorrect_get_values(self):
+        bad = '/api/v1/cycletime'
+        response = self.client.get(bad)
+        assert response.status_code == 400
