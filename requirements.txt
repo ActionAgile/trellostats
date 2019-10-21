@@ -1,5 +1,5 @@
 MarkupSafe==0.21
-Werkzeug==0.9.4
+Werkzeug==0.15.3
 curdling==0.4.0
 distlib==0.1.2
 grequests==0.2.0
