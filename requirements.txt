@@ -10,7 +10,7 @@ pytest==2.5.2
 python-dateutil==2.2
 requests==2.2.1
 six==1.5.2
-urllib3==1.8.2
+urllib3==1.26.5
 wheel==0.23.0
 wsgiref==0.1.2
 click==1.1
